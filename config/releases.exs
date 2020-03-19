@@ -36,4 +36,10 @@ config :star_chart, StarChartWeb.Endpoint,
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
+  pubsub: [
+    name: StarChart.PubSub,
+    adapter: Phoenix.PubSub.Redis,
+    host: System.get_env("REDIS_HOST", "localhost"),
+    node_name: System.get_env("POD_NAME", "some_node")
+  ],
   secret_key_base: secret_key_base
