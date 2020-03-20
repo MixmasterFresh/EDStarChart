@@ -69,7 +69,7 @@ defmodule StarLoader.Loader do
             {:ok, _} -> Logger.info("Successfully stored star \"#{system_name}\"!")
             {:error, changeset} ->
                 case changeset.errors do
-                    [system_address: {_, [constraint: :unique, constraint_name: _]}] -> Logger.info("star already stored")
+                    [system_address: {_, [constraint: :unique, constraint_name: _]}] -> Logger.info("star already stored: #{system_name}")
                     _ -> Logger.error(inspect changeset.errors)
                 end
         end
