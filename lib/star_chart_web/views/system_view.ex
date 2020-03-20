@@ -11,8 +11,7 @@ defmodule StarChartWeb.SystemView do
   end
 
   def render("system.json", %{system: system}) do
-    %{id: system.id,
-      name: system.name,
+    %{name: system.name,
       system_address: system.system_address,
       x: system.x,
       y: system.y,

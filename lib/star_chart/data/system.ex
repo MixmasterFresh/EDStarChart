@@ -2,6 +2,8 @@ defmodule StarChart.Data.System do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:system_address, :string, []}
+  @derive {Phoenix.Param, key: :system_address}
   schema "systems" do
     field :name, :string
     field :system_address, :integer

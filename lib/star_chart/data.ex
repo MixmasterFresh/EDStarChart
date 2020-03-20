@@ -35,7 +35,7 @@ defmodule StarChart.Data do
       ** (Ecto.NoResultsError)
 
   """
-  def get_system!(id), do: Repo.get!(System, id)
+  def get_system!(system_address), do: Repo.get!(System, system_address)
 
   @doc """
   Creates a system.

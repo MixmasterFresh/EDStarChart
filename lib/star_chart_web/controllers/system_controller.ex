@@ -20,8 +20,8 @@ defmodule StarChartWeb.SystemController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    system = Data.get_system!(id)
+  def show(conn, %{"system_address" => system_address}) do
+    system = Data.get_system!(system_address)
     render(conn, "show.json", system: system)
   end
 end

@@ -15,7 +15,6 @@ config :star_chart, StarChart.Repo,
   # ssl: true,
   url: database_url,
   username: "postgres",
-  port: 26257,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   parameters: [application_name: "starchart"]
 
