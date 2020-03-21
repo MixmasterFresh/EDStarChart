@@ -18,7 +18,7 @@ defmodule StarChart.Data do
 
   """
   def list_systems do
-    Repo.all(System)
+    Repo.all(from System, limit: 1000)
   end
 
   @doc """
