@@ -1,5 +1,6 @@
 defmodule StarChartWeb.SystemController do
   use StarChartWeb, :controller
+  use Params
 
   alias StarChart.Data
   alias StarChart.Data.System
@@ -8,7 +9,7 @@ defmodule StarChartWeb.SystemController do
 
   def index(conn, _params) do
     systems = Data.list_systems()
-    render(conn, "index.json", systems: systems)
+    render(conn, "many.json", systems: systems)
   end
 
   def create(conn, %{"system" => system_params}) do
@@ -23,5 +24,25 @@ defmodule StarChartWeb.SystemController do
   def show(conn, %{"system_address" => system_address}) do
     system = Data.get_system!(system_address)
     render(conn, "show.json", system: system)
+  end
+
+  defparams grid_params %{
+    x: :integer,
+    y: :integer,
+    z: :integer
+  }
+
+  def grid_query(conn, params) do
+    changeset = grid_params(params)
+    if changeset.valid? do
+      systems = changeset
+      |> Params.data
+      |> Data.get_systems_in_block
+      render(conn, "many.json", systems: systems)
+    else
+      conn
+      |> put_status(:bad_request)
+      |> text("Bad Request Parameters")
+    end
   end
 end

@@ -22,6 +22,9 @@ defmodule StarChartWeb.Router do
   scope "/api", StarChartWeb do
     pipe_through :api
 
-    resources "/system", SystemController, except: [:create, :delete]
+    resources "/systems", SystemController, except: [:create, :delete]
+    scope "/query" do
+      get "/by_grid/:x/:y/:z", SystemController, :grid_query
+    end
   end
 end

@@ -2,7 +2,7 @@ defmodule StarChartWeb.SystemView do
   use StarChartWeb, :view
   alias StarChartWeb.SystemView
 
-  def render("index.json", %{systems: systems}) do
+  def render("many.json", %{systems: systems}) do
     %{data: render_many(systems, SystemView, "system.json")}
   end
 

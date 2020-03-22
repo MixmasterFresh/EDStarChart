@@ -101,4 +101,28 @@ defmodule StarChart.Data do
   def change_system(%System{} = system) do
     System.changeset(system, %{})
   end
+
+  def get_systems_in_block(data) do
+    block = get_block(data.x, data.y, data.z)
+    Repo.all(from system in System,
+      where: system.x > ^block.x_min and system.x < ^block.x_max,
+      where: system.y > ^block.y_min and system.y < ^block.y_max,
+      where: system.z > ^block.z_min and system.z < ^block.z_max
+    )
+  end
+
+  defp get_block(x, y, z) do
+    block_size = 20
+    x_factor = trunc(x / block_size) * block_size
+    y_factor = trunc(y / block_size) * block_size
+    z_factor = trunc(z / block_size) * block_size
+    %{
+      x_min: x_factor,
+      y_min: y_factor,
+      z_min: z_factor,
+      x_max: x_factor + block_size,
+      y_max: y_factor + block_size,
+      z_max: z_factor + block_size
+    }
+  end
 end

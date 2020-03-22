@@ -44,7 +44,8 @@ defmodule StarChart.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_pubsub_redis, "~> 2.1.0"},
-      {:chumak, "1.3.0"}
+      {:chumak, "1.3.0"},
+      {:params, "~> 2.0"}
     ]
   end
 
