@@ -13,6 +13,14 @@ use Mix.Config
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :star_chart, StarChart.Repo,
+  # ssl: true,
+  url: "ecto://postgres@localhost:3311/star_chart_prod",
+  username: "postgres",
+  port: 3311,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  parameters: [application_name: "starchart"]
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

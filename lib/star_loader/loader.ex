@@ -48,7 +48,7 @@ defmodule StarLoader.Loader do
                                     "StarPos" => [x_position, y_position, z_position],
                                     "StarSystem" => system_name,
                                     "SystemAddress" => system_address
-                                } -> store_star(x_position, y_position, z_position, system_name, system_address)
+                                } -> spawn_link(StarLoader.Loader, :store_star, [x_position, y_position, z_position, system_name, system_address])
                                 _ -> Logger.error(inspect message)
                             end
                         end
