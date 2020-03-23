@@ -105,14 +105,14 @@ defmodule StarChart.Data do
   def get_systems_in_block(data) do
     block = get_block(data.x, data.y, data.z)
     Repo.all(from system in System,
-      where: system.x > ^block.x_min and system.x < ^block.x_max,
-      where: system.y > ^block.y_min and system.y < ^block.y_max,
-      where: system.z > ^block.z_min and system.z < ^block.z_max
+      where: system.x >= ^block.x_min and system.x < ^block.x_max,
+      where: system.y >= ^block.y_min and system.y < ^block.y_max,
+      where: system.z >= ^block.z_min and system.z < ^block.z_max
     )
   end
 
   defp get_block(x, y, z) do
-    block_size = 20
+    block_size = 50
     x_factor = trunc(x / block_size) * block_size
     y_factor = trunc(y / block_size) * block_size
     z_factor = trunc(z / block_size) * block_size
